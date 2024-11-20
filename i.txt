@@ -1,0 +1,5 @@
+1: ZER A 4 2
+2: SUB A 3
+3: ADD B 1
+4: ADD B 5
+5: ADD B 100
