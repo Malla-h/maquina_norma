@@ -32,6 +32,7 @@ def get_file_name_from_user():
     while True:
         print("Digite o nome do arquivo com as instruções:")
         file_name = input().strip()
+
         if not file_name:
             print("Entrada vazia. Tente novamente.")
             continue
@@ -40,16 +41,23 @@ def get_file_name_from_user():
             print("Saindo...")
             exit(0)
 
+        # Listagem de arquivos
         if file_name.lower() == "ls":
-            # List files in the current directory
             files = os.listdir(".")
             for file in files:
                 print(f" {file}")
             print()
-
             continue
-        return file_name
 
+        # Se o arquivo não tiver extensão, assumir que é .txt
+        if not os.path.splitext(file_name)[1]:
+            file_name += ".txt"
+            continue
+
+        if os.path.exists(file_name):
+            return file_name
+
+        print("Arquivo não encontrado. Tente novamente.")
 
 def print_comandos():
     print(
@@ -81,18 +89,28 @@ def print_output(previous_instr):
 # registers  A  B  C  D  E  F  G  H
 registers = [0, 0, 0, 0, 0, 0, 0, 0]
 
-
 KEYWORDS = {
     "ADD": add,
     "SUB": sub,
     "ZER": zer,
 }
 
-
-# if __name__ == "__main__":
-
 print_comandos()
 file_name = get_file_name_from_user()
+
+# Pegar o valor dos registradores com o usuario
+print(
+    "Digite o valor para inicializar os registradores (ENTER para inicializar com 0):"
+)
+for i in range(len(registers)):
+    while True:
+        try:
+            user_input = input(f"{chr(ord('A') + i)}: ").strip()
+            registers[i] = int(user_input) if user_input else 0
+            break
+        except ValueError:
+            print("Entrada inválida. Tente novamente.")
+
 
 # Salvar as instruções em um dicionário. Cada linha do arquivo será uma chave do dicionário.
 # Cada chave será uma lista de palavras.
@@ -110,8 +128,8 @@ with open(file_name) as file:
             break
 
         instructions[int(line_number)] = tokens[1:]
-pprint.pprint(instructions)
-print()
+
+# pprint.pprint(instructions)
 
 
 # Instrução atual. Começa com a primeira instrução.
