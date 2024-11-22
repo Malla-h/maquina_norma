@@ -159,7 +159,7 @@ with open(file_name) as file:
 
         instructions[int(line_number)] = tokens[1:]
 
-# pprint.pprint(instructions)
+pprint.pprint(instructions)
 
 
 # Instrução atual. Começa com a primeira instrução.
