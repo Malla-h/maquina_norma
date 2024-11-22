@@ -52,12 +52,13 @@ def get_file_name_from_user():
         # Se o arquivo não tiver extensão, assumir que é .txt
         if not os.path.splitext(file_name)[1]:
             file_name += ".txt"
-            continue
+            return file_name
 
         if os.path.exists(file_name):
             return file_name
 
         print("Arquivo não encontrado. Tente novamente.")
+
 
 def print_comandos():
     print(
@@ -68,26 +69,62 @@ def print_comandos():
     )
 
 
-def print_output(previous_instr):
+def print_output(instr):
+
     list_as_str = ",".join(map(str, registers))
-    print(f"(({list_as_str}), {previous_instr}) ", end="")
+    if instr == 0:
+        print(f"(({list_as_str}), M) Entrada de Dados")
+        return
+    else:
+        print(f"(({list_as_str}), {instr}) ", end="")
 
     # Pegar o operador da instrução
-    operator = instructions[previous_instr][0]
-    operand1 = instructions[previous_instr][1]
-    operand2 = instructions[previous_instr][2]
+    operator = instructions[instr][0]
+    operand1 = instructions[instr][1]
+    operand2 = instructions[instr][2]
 
     if operator == "ADD":
         print(f"FACA ADD ({operand1}) VA_PARA {operand2}")
     elif operator == "SUB":
         print(f"FACA SUB ({operand1}) VA_PARA {operand2}")
     elif operator == "ZER":
-        operand3 = instructions[previous_instr][3]
+        operand3 = instructions[instr][3]
         print(f"SE ZER ({operand1}) VA_PARA {operand2} SENAO VA_PARA {operand3}")
 
 
-# registers  A  B  C  D  E  F  G  H
-registers = [0, 0, 0, 0, 0, 0, 0, 0]
+def initialize_registers():
+    print("Escolha a quantidade de registradores\n(1 a 8, default 8):")
+    while True:
+        try:
+            user_input = input().strip()
+            if not user_input:
+                num_registers = 8
+            else:
+                num_registers = int(user_input)
+
+            if 1 <= num_registers <= 8:
+                break
+            else:
+                print("Quantidade de registradores inválida. Tente novamente.")
+
+        except ValueError:
+            print("Entrada inválida. Tente novamente.")
+
+    print(
+        "\nDigite o valor para inicializar os registradores (ENTER para inicializar com 0):"
+    )
+    registers = [0] * num_registers
+    for i in range(num_registers):
+        while True:
+            try:
+                user_input = input(f"{chr(ord('A') + i)}: ").strip()
+                registers[i] = int(user_input) if user_input else 0
+                break
+            except ValueError:
+                print("Entrada inválida. Tente novamente.")
+
+    return registers
+
 
 KEYWORDS = {
     "ADD": add,
@@ -98,18 +135,11 @@ KEYWORDS = {
 print_comandos()
 file_name = get_file_name_from_user()
 
+# registers: A  B  C  D  E  F  G  H
+# registers = [0, 0, 0, 0, 0, 0, 0, 0]
+
 # Pegar o valor dos registradores com o usuario
-print(
-    "Digite o valor para inicializar os registradores (ENTER para inicializar com 0):"
-)
-for i in range(len(registers)):
-    while True:
-        try:
-            user_input = input(f"{chr(ord('A') + i)}: ").strip()
-            registers[i] = int(user_input) if user_input else 0
-            break
-        except ValueError:
-            print("Entrada inválida. Tente novamente.")
+registers = initialize_registers()
 
 
 # Salvar as instruções em um dicionário. Cada linha do arquivo será uma chave do dicionário.
@@ -118,7 +148,7 @@ with open(file_name) as file:
     instructions = {}
     for line in file:
 
-        if not line:
+        if not line or line.startswith("#") or line.isspace():
             continue
 
         tokens = line.strip().split()
@@ -134,6 +164,7 @@ with open(file_name) as file:
 
 # Instrução atual. Começa com a primeira instrução.
 current_instr: int = 1
+print_output(0)
 # Executar as instruções. Se o numero da instrução for maior do que o tamanho do dicionário, parar.
 while current_instr <= len(instructions):
     previous_instr = current_instr
