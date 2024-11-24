@@ -1,3 +1,6 @@
+# 3_reg
+# input(A, B)
+#
 1: ZER A 4 2
 2: SUB A 3
 3: ADD C 1

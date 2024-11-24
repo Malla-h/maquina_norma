@@ -52,12 +52,12 @@ def get_file_name_from_user():
         # Se o arquivo não tiver extensão, assumir que é .txt
         if not os.path.splitext(file_name)[1]:
             file_name += ".txt"
-            return file_name
 
         if os.path.exists(file_name):
+            print()
             return file_name
 
-        print("Arquivo não encontrado. Tente novamente.")
+        print("Arquivo não encontrado. Tente novamente.\n")
 
 
 def print_comandos():
@@ -159,7 +159,8 @@ with open(file_name) as file:
 
         instructions[int(line_number)] = tokens[1:]
 
-pprint.pprint(instructions)
+# Descomentar para imprimir o dicionário de instruções para depuração
+# pprint.pprint(instructions)
 
 
 # Instrução atual. Começa com a primeira instrução.

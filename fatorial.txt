@@ -1,3 +1,6 @@
+# 4_reg
+# input(A)
+#
 # Queremos o fatorial do valor inicializado em A
 # L0: Se A for inicializado com 0, resultado é 1
 1: ZER A 99 2

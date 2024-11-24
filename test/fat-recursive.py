@@ -4,5 +4,4 @@ def fat(n):
     else:
         return n * fat(n - 1)
 
-
 print(fat(5))
