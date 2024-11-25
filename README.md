@@ -3,6 +3,7 @@ Simulação de uma máquina norma de até 8 registradores em python.
 
 # Operações
 As única operações possíveis são:
+
 • ADD: incrementa em uma unidade um determinado registrador
 
 • SUB: decrementa em uma unidade um determinado registrador
