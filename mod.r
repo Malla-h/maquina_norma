@@ -1,5 +1,5 @@
 # 8_reg
-# input(A,B)
+# 2 inputs
 #
 #
 # Teste se o valor da divisão inteira é zero

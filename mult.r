@@ -1,5 +1,5 @@
 # 3_reg
-# input(A, B)
+# 2 inputs
 #
 # L1: Quando B = 0, vamos para finalização
 1: ZER B 10 2

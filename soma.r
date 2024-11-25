@@ -1,5 +1,5 @@
 # 3_reg
-# input(A, B)
+# 2 inputs
 #
 1: ZER A 4 2
 2: SUB A 3

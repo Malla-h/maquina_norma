@@ -115,28 +115,24 @@ def print_output(instr):
 
 
 def initialize_registers():
-    print("Escolha a quantidade de registradores\n(1 a 8, default 8):")
-    while True:
-        try:
-            user_input = input().strip()
-            if not user_input:
-                num_registers = 8
-            else:
-                num_registers = int(user_input)
 
-            if 1 <= num_registers <= 8:
-                break
-            else:
-                print("Quantidade de registradores inválida. Tente novamente.")
+    try:
+        with open(file_name, "r") as file:
+            # Ler primeira linha e pegar terceiro caractere, que contém a quantidade mínima de registradores necessários
+            first_line = file.readline()
+            num_registers = int(first_line[2]) if len(first_line) >= 3 else 8
 
-        except ValueError:
-            print("Entrada inválida. Tente novamente.")
+            # Ler a segunda linha e pegar terceiro caractere, que contém a quantidade de inputs necessários
+            second_line = file.readline()
+            num_inputs = int(second_line[2]) if len(second_line) >= 3 else 8
+    except (FileNotFoundError, ValueError, IndexError):
+        num_registers = 8
+        num_inputs = 8
 
-    print(
-        "\nDigite o valor para inicializar os registradores (ENTER para inicializar com 0):"
-    )
+    print(f"Quantidade de registradores: {num_registers}")
+
     registers = [0] * num_registers
-    for i in range(num_registers):
+    for i in range(num_inputs):
         while True:
             try:
                 user_input = input(f"{chr(ord('A') + i)}: ").strip()

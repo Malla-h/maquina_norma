@@ -3,13 +3,19 @@ Simulação de uma máquina norma de até 8 registradores em python.
 
 # Operações
 As única operações possíveis são:
-
 • ADD: incrementa em uma unidade um determinado registrador
 
 • SUB: decrementa em uma unidade um determinado registrador
 
 • ZER: testa se um determinado registrador contém o valor zero
 
+# Syntaxe para quantidade automática de registradores e inputs
+O comentários nas primeiras duas linhas indicam para o script quanto registradores e inputs são necessários. Exemplo:
+```
+# 3_reg
+# 2 inputs
+```
+Vai usar 3 registradores e pedir dois inputs (A e B).
 
 # Programa inclusos
 Os programas são só aquivos de texto a extensão não importa. A extensão .r foi usada para permitir o uso de um syntax highlighting conveniente. Só forneça os valores necessários para a conta (geralmente o valor de `A`, ocasionalmente `B` também).

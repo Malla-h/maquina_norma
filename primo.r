@@ -1,5 +1,5 @@
 # 8_reg
-# input(A)
+# 1 input
 #
 # Calcula se um número é primo
 # Retorna H = 1 se for primo, H = 0 se não for.

@@ -1,5 +1,5 @@
 # 4_reg
-# input(A)
+# 1 input
 #
 # Queremos o fatorial do valor inicializado em A
 # L0: Se A for inicializado com 0, resultado é 1
@@ -61,12 +61,12 @@
     27: SUB A 28
     28: ADD C 29
     29: ADD D 26
-    
+
     #   M1.2: Restaurar A usando D.
     30: ZER D 33 31
     31: ADD A 32
     32: SUB D 30
-    
+
     #   M1.4: Vamos repetir o loop pai B vezes
     33: SUB B 25
 

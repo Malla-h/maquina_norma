@@ -1,5 +1,5 @@
 # 4_reg
-# input(A, B)
+# 2 inputs
 #
 # Teste se o valor de um registrador é menor que outro registrador
 # A < B usando C, D, E
