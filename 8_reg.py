@@ -1,6 +1,7 @@
 import os
 import pprint
 
+slow_mode = False
 
 def add(operand: str):
     # Usar a tabela ASCII para pegar o valor do registrador correspondente
@@ -52,6 +53,12 @@ def get_file_name_from_user():
             print()
             continue
 
+        # Modo lento
+        if file_name.lower() == "slow":
+            global slow_mode
+            slow_mode = not slow_mode
+            print(f"Modo lento: {slow_mode}")
+
         # Checar se tem um arquivo com o nome que foi digitado
         if not os.path.splitext(file_name)[1]:  # Se não tiver extensão
             matching_files = [
@@ -77,12 +84,14 @@ def print_comandos():
         "\nComandos disponiveis:\n\n"
         "[sair] ou [exit] para sair.\n"
         "[ls] para listar os arquivos disponiveis.\n"
+        "[slow] para ativar o modo lento.\n"
     )
 
 
 def print_output(instr):
 
-    # input();print("\033[{}C\033[1A".format(1 + 1), end="")
+    if slow_mode:
+        input();print("\033[{}C\033[1A".format(1 + 1), end="")
 
     list_as_str = ",".join(map(str, registers))
     if instr == 0:
@@ -173,14 +182,14 @@ with open(file_name) as file:
         instructions[int(line_number)] = tokens[1:]
 
 # Descomentar para imprimir o dicionário de instruções para depuração
-pprint.pprint(instructions)
+# pprint.pprint(instructions)
 
 
 # Instrução atual. Começa com a primeira instrução.
 current_instr: int = 1
 print_output(0)
 # Executar as instruções. Se o numero da instrução for maior do que o tamanho do dicionário, parar.
-while current_instr <= len(instructions):
+while current_instr <= max(instructions):
     previous_instr = current_instr
     function = KEYWORDS.get(instructions[current_instr][0])
     if function:

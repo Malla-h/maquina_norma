@@ -73,7 +73,7 @@
 # o valor de B está agora em D
 # e o valor de A está em C.
 #
-# Colocar os A no lugar original. Copiar o resuntado da divisão (H) para B, para usar no calculo do resto da divisão
+# Colocar o A no lugar original. Copiar o resuntado da divisão (H) para B, para usar no calculo do resto da divisão
 #
 # L5: zerar todos os registradores que não estamos usando (A, B, D, E, F, G)
 29: ZER A 31 30
