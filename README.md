@@ -3,9 +3,12 @@ Simulação de uma máquina norma de até 8 registradores em python.
 
 # Operações
 As única operações possíveis são:
-• ADD: incrementa em uma unidade um determinado registrador 
+• ADD: incrementa em uma unidade um determinado registrador
+
 • SUB: decrementa em uma unidade um determinado registrador
+
 • ZER: testa se um determinado registrador contém o valor zero
+
 
 # Programa inclusos
 Os programas são só aquivos de texto a extensão não importa. A extensão .r foi usada para permitir o uso de um syntax highlighting conveniente. Só forneça os valores necessários para a conta (geralmente o valor de `A`, ocasionalmente `B` também).
@@ -37,7 +40,7 @@ Pede `A` input.
 Usa  4 registradores.
 Pede `A` e `B` como input.
 
-Testa se o valor do registrador A é menor que do registrador B. 
+Testa se o valor do registrador A é menor que do registrador B.
 Retorna `C = 1` para `True`, `C = 0` para `false`.
 
 ## mod
@@ -57,6 +60,3 @@ Pede `A` como input.
 Testa se o valor dado em `A` é primo.
 Retorna `H = 0` se não for primo,
 `H = 1` se for primo.
-
-
-
