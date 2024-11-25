@@ -10,7 +10,7 @@
 4: ADD C 5
 5: ADD D 2
 
-#   L1.2: Restaurar A. Agora A e C tem o mesmo valor.
+#   L1.2: Restaurar A usando D.
 6: ZER D 9 7
 7: ADD A 8
 8: SUB D 6

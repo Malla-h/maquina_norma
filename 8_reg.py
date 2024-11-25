@@ -29,8 +29,11 @@ def zer(operand: str) -> bool:
 
 
 def get_file_name_from_user():
+    # Pegar o diretorio em que o script se encontra
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+
     while True:
-        print("Digite o nome do arquivo com as instruções:")
+        print("Digite o nome do arquivo ou um comando:")
         file_name = input().strip()
 
         if not file_name:
@@ -43,33 +46,43 @@ def get_file_name_from_user():
 
         # Listagem de arquivos
         if file_name.lower() == "ls":
-            files = os.listdir(".")
+            files = os.listdir(script_dir)
             for file in files:
                 print(f" {file}")
             print()
             continue
 
-        # Se o arquivo não tiver extensão, assumir que é .txt
-        if not os.path.splitext(file_name)[1]:
-            file_name += ".txt"
+        # Checar se tem um arquivo com o nome que foi digitado
+        if not os.path.splitext(file_name)[1]:  # Se não tiver extensão
+            matching_files = [
+                f for f in os.listdir(script_dir) if os.path.splitext(f)[0] == file_name
+            ]
+            if matching_files:
+                file_name = matching_files[0]  # Pegar a primeira match
+            else:
+                print("Arquivo não encontrado. Tente novamente.\n")
+                continue
 
-        if os.path.exists(file_name):
+        # Checar se o arquivo existe no diretório do script
+        full_path = os.path.join(script_dir, file_name)
+        if os.path.exists(full_path):
             print()
-            return file_name
+            return full_path
 
         print("Arquivo não encontrado. Tente novamente.\n")
 
 
 def print_comandos():
     print(
-        "comandos disponiveis:\n"
-        "sair ou exit para sair.\n"
-        "ls para listagem de arquivos.\n"
-        "comandos para ver a lista comandos\n"
+        "\nComandos disponiveis:\n\n"
+        "[sair] ou [exit] para sair.\n"
+        "[ls] para listar os arquivos disponiveis.\n"
     )
 
 
 def print_output(instr):
+
+    # input();print("\033[{}C\033[1A".format(1 + 1), end="")
 
     list_as_str = ",".join(map(str, registers))
     if instr == 0:
@@ -148,7 +161,7 @@ with open(file_name) as file:
     instructions = {}
     for line in file:
 
-        if not line or line.startswith("#") or line.isspace():
+        if not line or line.strip().startswith("#") or line.isspace():
             continue
 
         tokens = line.strip().split()
@@ -160,7 +173,7 @@ with open(file_name) as file:
         instructions[int(line_number)] = tokens[1:]
 
 # Descomentar para imprimir o dicionário de instruções para depuração
-# pprint.pprint(instructions)
+pprint.pprint(instructions)
 
 
 # Instrução atual. Começa com a primeira instrução.

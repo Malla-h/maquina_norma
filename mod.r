@@ -1,8 +1,17 @@
 # 8_reg
 # input(A,B)
 #
-
-# Primeiro calcular A // B
+#
+# Teste se o valor da divisão inteira é zero
+#
+# O registrador H representará verdadeiro se for divisível e falso se nao for divisível
+# O resultado da divisão estará em G.
+# O resto da divisão estará em F.
+#
+#
+# a % b = a - ( b * (a//b) )
+#
+# Primeiro calcular a // b
 
 # P1: Se A == 0, para qualquer B, A / B = 0
 1: ZER A 100 2
@@ -136,8 +145,7 @@
 65: SUB F 66
 66: SUB A 64
 
-# O resultado da divisão está em G.
-# O resto da divisão está em F.
+
 
 # L11: Remover E que não tem nada de importancia
 67: ZER E 69 68
