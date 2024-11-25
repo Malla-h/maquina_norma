@@ -7,7 +7,7 @@
 # P1: Se A == 0, para qualquer B, A / B = 0
 1: ZER A 100 2
 
-# P2: Se B == 0 e A != 0, A / B = indefinido. Retorar 0 mesmo assim.
+# P2: Se B == 0 e A != 0, A / B = indefinido. Retornar 0 mesmo assim.
 2: ZER B 100 3
 
 # P3: Calcular A / B
@@ -39,7 +39,7 @@
     # Se A chegar a 0, chegamos ao fim da divisão.
     17: SUB A 18
     18: SUB B 19
-    19: ZER A 29 20
+    19: ZER A 71 20
     20: ZER B 21 17
 
     # Adicionar ao contador H (resto da divisão)
@@ -56,6 +56,9 @@
     27: SUB E 28
     28: ZER E 17 26
 
+#fix: quando a divisão é perfeita, H acaba com valor 1 menor que o esperado
+71: ZER B 72 29
+72: ADD H 29
 
 # A % B = A - ( B * (A//B) ) originalmente, mas
 # o valor de B está agora em D
@@ -136,6 +139,10 @@
 # O resultado da divisão está em G.
 # O resto da divisão está em F.
 
-# Vamos fazer H = 0 se o número foi divisível e H = 1 se não foi divisível
-67: ZER F 100 68
-68: ADD H 100
+# L11: Remover E que não tem nada de importancia
+67: ZER E 69 68
+68: SUB E 67
+
+# Vamos fazer H = 1 se o número foi divisível e H = 0 se não foi divisível
+69: ZER F 70 100
+70: ADD H 100
