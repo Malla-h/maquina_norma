@@ -1,8 +1,7 @@
 # 8_reg
 # 1 input
 #
-# Calcula se um número é primo
-# Retorna H = 1 se for primo, H = 0 se não for.
+# Calcula se um número é primo.  Retorna H = 1 se for primo, H = 0 se não for.
 
 # P1: Se A == 0, não é primo
 1: ZER A 1000 946

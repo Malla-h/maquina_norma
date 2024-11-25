@@ -1,7 +1,7 @@
 # 4_reg
 # 2 inputs
 #
-# Teste se o valor de um registrador é menor que outro registrador
+# Teste se o valor de um registrador A é menor que um registrador B. Resultado em C = 1 True, C = 0 False.
 # A < B usando C, D, E
 # O resultado final está em C: 0 ou 1.
 

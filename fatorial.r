@@ -1,7 +1,7 @@
 # 4_reg
 # 1 input
 #
-# Queremos o fatorial do valor inicializado em A
+# Fatorial do valor dado A. O resultado final é em B.
 # L0: Se A for inicializado com 0, resultado é 1
 1: ZER A 99 2
 

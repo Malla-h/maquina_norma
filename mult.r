@@ -1,6 +1,8 @@
 # 3_reg
 # 2 inputs
 #
+# Multiplica A por B. Resultado em A.
+#
 # L1: Quando B = 0, vamos para finalização
 1: ZER B 10 2
 

@@ -1,8 +1,7 @@
 # 8_reg
 # 2 inputs
 #
-#
-# Teste se o valor da divisão inteira é zero
+# Teste se o valor da divisão inteira é zero. H = 1 se o número foi divisível e H = 0 se não foi divisível. Resultado da divisão em G. Resto da divisão em F.
 #
 # O registrador H representará verdadeiro se for divisível e falso se nao for divisível
 # O resultado da divisão estará em G.

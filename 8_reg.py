@@ -153,11 +153,25 @@ KEYWORDS = {
 print_comandos()
 file_name = get_file_name_from_user()
 
+# Imprimir a descrição do programa na quarta linha
+try:
+    with open(file_name, "r", encoding="utf-8") as file:
+        for i in range(3):
+            file.readline()
+        print(file.readline().strip())
+except FileNotFoundError:
+    print("Descrição do programa: Arquivo nao encontrado")
+except IndexError:
+    print("A descrição não está disponível.")
+print()
+
 # registers: A  B  C  D  E  F  G  H
 # registers = [0, 0, 0, 0, 0, 0, 0, 0]
 
 # Pegar o valor dos registradores com o usuario
 registers = initialize_registers()
+
+
 
 
 # Salvar as instruções em um dicionário. Cada linha do arquivo será uma chave do dicionário.
