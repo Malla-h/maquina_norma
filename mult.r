@@ -1,4 +1,4 @@
-# 3_reg
+# 4_reg
 # 2 inputs
 #
 # Multiplica A por B. Resultado em A.
